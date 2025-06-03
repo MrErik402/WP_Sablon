@@ -11,8 +11,8 @@
         <nav class="custom-navbar">
             <ul class="navbar-menu">
                 <li class="navbar-item<?php if (is_front_page()) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>">FŐOLDAL</a></li>
-                <li class="navbar-item<?php if (is_page('blog')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/blog">BLOG</a></li>
-                <li class="navbar-item<?php if (is_page('aboutus') || is_page('rolunk')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/aboutus">RÓLUNK</a></li>
+                <li class="navbar-item<?php if (is_page('blog')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/blog">BLOG</a></li>
+                <li class="navbar-item<?php if (is_page('aboutus') || is_page('rolunk')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/aboutus/">RÓLUNK</a></li>
             </ul>
         </nav>
     </header>
