@@ -7,7 +7,6 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	$url = get_site_url();
     <header>
         <nav class="custom-navbar">
             <ul class="navbar-menu">
