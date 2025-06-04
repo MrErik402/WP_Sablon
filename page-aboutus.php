@@ -112,7 +112,7 @@ get_header(); ?>
 <style>
 .aboutus-perfect-bg {
   min-height: 130vh;
-  width: 100vw;
+  width: 100%;
   background: #e7ded7; /* marble-like light beige/gray */
   
   box-sizing: border-box;
