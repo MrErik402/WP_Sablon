@@ -2,12 +2,10 @@
   <div class="footer-img-overlay">
     <div class="footer-img-content">
       <div class="footer-box">
-        <h3>„A jó kenyér időt, törődést és szeretetet kíván.”</h3>
-        <p>Nálunk a kenyér több mint étel - ez egy történet, amit minden szelet mesél el.</p>
+        <p>Erik diák ig. száma: 2024010000</p>
       </div>
       <div class="footer-box">
-        <h3>Tudtad, hogy a kovászos kenyér emésztése könnyebb a szervezetnek?</h3>
-        <p>Fedezd fel a kenyér történetét és egészségre gyakorolt hatásait nálunk!</p>
+        <p>Erik diák ig. száma: 2024010000</p>
       </div>
     </div>
   </div>
