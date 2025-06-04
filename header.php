@@ -8,13 +8,27 @@
 </head>
 <body <?php body_class(); ?>>
     <header>
-        <nav class="custom-navbar">
-            <ul class="navbar-menu">
-                <li class="navbar-item<?php if (is_front_page()) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>">FŐOLDAL</a></li>
-                <li class="navbar-item<?php if (is_page('blog')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/blog">BLOG</a></li>
-                <li class="navbar-item<?php if (is_page('aboutus') || is_page('rolunk')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/aboutus/">RÓLUNK</a></li>
-            </ul>
-        </nav>
+    <nav class="custom-navbar"> 
+    <div class="navbar-container">
+        <!-- Logo on right -->
+        <div class="navbar-logo">
+            <a href="<?php echo get_site_url(); ?>">
+                <img style="width: 160px; height: 100px; scale: 1.2;"
+                     src="<?php echo get_template_directory_uri(); ?>/Pictures/logo.png" 
+                     alt="Logo" class="logo">
+            </a>
+        </div>
+        <!-- Nav items on left -->
+        <ul class="navbar-menu">
+            <li class="navbar-item<?php if (is_front_page()) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>">FŐOLDAL</a></li>
+            <li class="navbar-item<?php if (is_page('blog')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/blog">BLOG</a></li>
+            <li class="navbar-item<?php if (is_page('aboutus') || is_page('rolunk')) echo ' active'; ?>"><a href="<?php echo get_site_url(); ?>/index.php/aboutus/">RÓLUNK</a></li>
+        </ul>
+
+        
+    </div>
+</nav>
+
     </header>
     <style>
         header{
@@ -77,4 +91,22 @@
             margin-left: 1vw;
         }
     }
+    .custom-navbar .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    /* Logo stays on the left by default */
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* spacing between menu items */
+}
+
     </style>

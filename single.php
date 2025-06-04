@@ -43,7 +43,14 @@
             <?php
             // If comments are open or we have at least one comment, load up the comment template.
             if (comments_open() || get_comments_number()) :
+                echo '<div class="comments-section-wrapper">';
+                echo '<button class="toggle-comments-btn" onclick="toggleComments()">';
+                echo '<i class="fas fa-comments"></i> Megjegyzések';
+                echo '</button>';
+                echo '<div class="comments-container" id="commentsContainer">';
                 comments_template();
+                echo '</div>';
+                echo '</div>';
             endif;
             ?>
 
@@ -150,6 +157,194 @@
         margin: 0.5rem 0;
     }
 }
+
+/* Comments Section Styling */
+.comments-section-wrapper {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.toggle-comments-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.toggle-comments-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.toggle-comments-btn i {
+    margin-right: 8px;
+}
+
+.comments-container {
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    margin-top: 2rem;
+}
+
+.comments-container.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* WordPress Comments Styling */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.comment:hover {
+    transform: translateY(-3px);
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.comment-author .fn {
+    font-weight: bold;
+    color: #333;
+    font-style: normal;
+}
+
+.comment-metadata {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.comment-content {
+    color: #444;
+    line-height: 1.6;
+}
+
+.comment-respond {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-respond h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.comment-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form input[type="email"]:focus,
+.comment-form input[type="url"]:focus,
+.comment-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.comment-form .submit {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-form .submit:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .comment-author {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .comment-author img {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}
 </style>
+
+<script>
+function toggleComments() {
+    const commentsContainer = document.getElementById('commentsContainer');
+    commentsContainer.classList.toggle('active');
+    
+    // Smooth scroll to comments when opening
+    if (commentsContainer.classList.contains('active')) {
+        commentsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Add animation to comments when they appear
+document.addEventListener('DOMContentLoaded', function() {
+    const comments = document.querySelectorAll('.comment');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    comments.forEach(comment => {
+        comment.style.opacity = '0';
+        comment.style.transform = 'translateY(20px)';
+        comment.style.transition = 'all 0.5s ease';
+        observer.observe(comment);
+    });
+});
+</script>
 
 <?php get_footer(); ?>
